@@ -7,9 +7,6 @@ export const getAllCollections = (): Promise<Collection[]> => {
   return axios
     .get<Collection[]>("/collection", {
       baseURL: API_URL,
-      headers: {},
-      params: {}, // query params
-      data: {}, // body
     })
     .then((res) => res.data);
 };

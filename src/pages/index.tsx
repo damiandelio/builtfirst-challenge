@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import type { NextPage } from "next";
-import { getAllCollections } from "@/utils/apiCalls";
-import type { Collection } from "@/utils/types";
-import styles from "@/styles/Home.module.scss";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
+// import { getAllCollections } from "@/utils/apiCalls";
+import { Stepper } from "@/components";
+import { NAME_REGEX } from "@/utils/validations";
+import type { Collection } from "@/utils/types";
+import styles from "@/styles/Home.module.scss";
 
 const COLLECTION_TYPE = "collection-type";
 const SUB_COLLECTION = "sub-collection";
 const NAME = "name";
 const DESCRIPTION = "description";
-
-const NAME_REGEX = /^[a-zA-Z\s]*$/;
 
 const INITIAL_VALUE = [
   {
@@ -39,7 +39,9 @@ const Home: NextPage = () => {
   const isSubCollectionDisabled: boolean =
     watchedCollectionType !== "sub-collection";
 
-  const onSubmit = (data) => {
+  // TODO: define an interface for the form data
+  const onSubmit = (data: unknown) => {
+    // TODO: submit the data
     console.log(data);
   };
 
@@ -47,6 +49,7 @@ const Home: NextPage = () => {
     console.log("errors", errors);
   }, [errors]);
 
+  // TODO: currently the endpoint is broken
   /* useEffect(() => {
     (async () => {
       try {
@@ -61,16 +64,7 @@ const Home: NextPage = () => {
   return (
     <main className={styles.page}>
       <div className={styles.container}>
-        <div className={styles.steps}>
-          <div className={styles.bullet}>1</div>
-          <div>SELECT DEALS</div>
-          <div className={styles.line} />
-          <div className={styles.bullet}>2</div>
-          <div>EDIT COLLECTION</div>
-          <div className={styles.line} />
-          <div className={styles.bullet}>3</div>
-          <div>CONFIRM</div>
-        </div>
+        <Stepper />
         <h1>Collection</h1>
         <p>
           Collection will help you show deals alongside each other and
