@@ -1,7 +1,23 @@
+import { useEffect, useState } from "react";
 import type { NextPage } from "next";
+import { getAllCollections } from "@/utils/apiCalls";
+import type { Collection } from "@/utils/types";
 import styles from "@/styles/Home.module.scss";
 
 const Home: NextPage = () => {
+  const [collections, setCollections] = useState<Collection[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      const collectionsData = await getAllCollections();
+      setCollections(collectionsData);
+    })();
+  }, []);
+
+  /* useEffect(() => {
+    console.log(collections);
+  }, [collections]); */
+
   return (
     <main className={styles.page}>
       <div className={styles.container}>
