@@ -10,6 +10,7 @@
     "format": "prettier --write \"./(?!.next)**/*.{js,jsx,ts,tsx,html,css,scss,sass}\""
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "next": "12.2.2",
     "normalize.css": "^8.0.1",
     "react": "18.2.0",
